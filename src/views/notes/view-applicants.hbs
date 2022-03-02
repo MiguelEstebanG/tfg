@@ -1,0 +1,24 @@
+<form action="/notes/{{note._id}}/view-applicants" method="get">
+    <table class="table table-bordered table-hover table-dark">
+      <thead>
+        <tr>
+          <th>N°</th>
+          <th>UserName</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Reasons</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each userRegistereds}}
+          <tr>
+            <td>{{@index}}</td>
+            <td><strong>{{userName}}</strong></td>
+            <td>{{email}}</td>
+            <td>{{address}}</td>
+            <td>{{reason}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+</form>

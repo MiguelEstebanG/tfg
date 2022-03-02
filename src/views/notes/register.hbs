@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <!--FORM-->
+    <div class="col-md-5 offset-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h1>Register Application</h1>
+
+          <form action="/notes/{{note._id}}/register" method="post">
+            <!--<div class="mb-3">
+              <input
+                class="form-control"
+                type="text"
+                name="userName"
+                placeholder="Write your name"
+                value="{{userRegistered.userName}}"
+              />
+            </div>-->
+
+            <!--<div class="mb-3">
+              <input
+                class="form-control"
+                type="text"
+                name="email"
+                placeholder="Write your email"
+                value="{{userRegistered.email}}"
+              />
+            </div>-->
+
+            <div class="mb-3">
+              <input
+                class="form-control"
+                type="text"
+                name="address"
+                placeholder="Write your address"
+                value="{{userRegistered.address}}"
+              />
+            </div>
+
+            <!--<div class="mb-3">
+              <input
+                class="form-control"
+                type="text"
+                name="job"
+                placeholder="Job you are registering for"
+                value="{{userRegistered.job}}"
+              />
+            </div>-->
+
+            <div class="mb-3">
+              <textarea
+                class="form-control"
+                name="reasons"
+                rows="3"
+                placeholder="Add a Reason"
+              >{{userRegistered.reasons}}</textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Purchase</button>
+            <a href="/notes" class="btn btn-success">See all offers</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
