@@ -2201,6 +2201,11 @@
   dependencies:
     "minimist" "^1.2.5"
 
+"jsonform@^2.2.5":
+  "integrity" "sha512-GhD1q5h9AY4W4Vil53sYyF+RCodnX1gdnI6mDFPv1b+kgxFntf9eCk2C+GydlDX0mhWrGCcx892KdoVNmlNxug=="
+  "resolved" "https://registry.npmjs.org/jsonform/-/jsonform-2.2.5.tgz"
+  "version" "2.2.5"
+
 "kareem@2.3.2":
   "integrity" "sha512-STHz9P7X2L4Kwn72fA4rGyqyXdmrMSdxqHx9IXon/FXluXieaFA6KJ2upcHAHxQPQ0LeM/OjLrhFxifHewOALQ=="
   "resolved" "https://registry.npmjs.org/kareem/-/kareem-2.3.2.tgz"

@@ -5,6 +5,7 @@ import {
   renderSigninForm,
   signin,
   logout,
+  deleted,
 } from "../controllers/users.controller.js";
 
 const router = Router();
@@ -19,5 +20,7 @@ router.get("/users/signin", renderSigninForm);
 router.post("/users/signin", signin);
 
 router.get("/users/logout", logout);
+
+router.get("/users/delete", deleted);
 
 export default router;

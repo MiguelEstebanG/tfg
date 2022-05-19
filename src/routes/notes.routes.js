@@ -9,6 +9,7 @@ import {
   registerOne,
   renderRegisterOneForm,
   renderViewApplicants,
+  //renderViewApplicantsForm,
 } 
 from "../controllers/notes.controller.js";
 import { isAuthenticated } from "../helpers/auth.js";
