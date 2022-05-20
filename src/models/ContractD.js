@@ -52,7 +52,13 @@ const ContractDSchema = new Schema(
                         id:{ type: String, required: true, trim: true, default: '0023'},
                         definition:{ type: String, required: true, trim: true, default: 'Publicar Oferta'},
                         events:{
-                            offerDetails:[String],
+                            offerDetails:[{
+                                id: String, 
+                                title: String, 
+                                description: String,
+                                user: String,
+                                date: String,
+                            }],
                         }
                     },                       
                 }

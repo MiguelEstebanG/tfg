@@ -48,7 +48,7 @@ export const createNewNote = async (req, res) => {
 
     contractUN._activities.ofertarEmpleo._actions.habilitarOferta.events.offerSubmitted.push(phrase);
 
-    const frase = "Company with id: " + userId + " has purchased a new offer with title: " + newNote.title + " and description: " + newNote.description + " at " + hour + " of " + fecha;
+    const frase = {id: newNote._id, title: newNote.title, description: newNote.description, user: newNote.user, date: hour + ' of ' + fecha };
 
     contractUN._activities.ofertarEmpleo._actions.detallesOferta.events.offerDetails.push(frase);
 
