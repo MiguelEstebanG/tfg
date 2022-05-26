@@ -2,6 +2,7 @@ import Note from "../models/Note.js";
 import UserRegistered from "../models/UserRegistered.js";
 import User from "../models/User.js";
 import ContractD from "../models/ContractD.js";
+import Interview from "../models/Interview.js";
 
 export const renderNoteForm = (req, res) => {
   res.render("notes/new-note");
@@ -196,8 +197,27 @@ export const renderViewApplicants = async (req, res) =>{
   }
 };
 
+
+
 export const interview = async (req, res) =>{
-  res.render('notes/interview');
+  // let jobR = await Note.findById(req.params.id);
+  
+  
+  // let userInt = await UserRegistered.find({job: req.params.id});
+  // userInt = userInt.idUser;
+
+  const {job, place, date, extraInfo} = req.body;
+  const newInterview = new Interview({job, place, date, extraInfo});
+  newInterview.interviewer = req.user.id;
+  newInterview.application = req.params.id;
+  // newInterview.job = req.body.job;
+  // newInterview.place = req.body.place;
+  // newInterview.date = req.body.date;
+  // newInterview.extraInfo = req.body.extraInfo;
+  await newInterview.save();
+
+  res.render("notes/interview");
+
 }
 
 //export const renderViewApplicantsForm = async (req, res) =>{

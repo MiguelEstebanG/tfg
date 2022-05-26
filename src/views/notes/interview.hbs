@@ -6,14 +6,24 @@
         <div class="card-body">
           <h1>Set interview conditions</h1>
 
-          <form action="/notes/{{note._id}}/view-applicants/{{idUser}}" method="post">
+          <form action="/notes/{{note._id}}/view-applicants/interview" method="post">
             <div class="mb-3">
               <input
                 class="form-control"
                 type="text"
-                name="userName"
-                placeholder="Write your name"
-                value="{{userRegistered.userName}}"
+                name="job"
+                placeholder="Write the job you want to interview this candidate for."
+                value="{{interview.job}}"
+              />
+            </div>
+
+            <div class="mb-3">
+              <input
+                class="form-control"
+                type="text"
+                name="place"
+                placeholder="Write the place where the interview is going to take place"
+                value="{{interview.place}}"
               />
             </div>
 
@@ -31,9 +41,9 @@
               <input
                 class="form-control"
                 type="text"
-                name="address"
-                placeholder="Write your address"
-                value="{{userRegistered.address}}"
+                name="date"
+                placeholder="Specify the day when the interview is taken"
+                value="{{interview.date}}"
               />
             </div>
 
@@ -50,10 +60,10 @@
             <div class="mb-3">
               <textarea
                 class="form-control"
-                name="reasons"
+                name="extraInfo"
                 rows="3"
-                placeholder="Add a Reason"
-              >{{userRegistered.reasons}}</textarea>
+                placeholder="Write more info regarding to the interview"
+              >{{interview.extraInfo}}</textarea>
             </div>
             <button class="btn btn-primary" type="submit">Submit</button>
             {{!-- <a href="/notes/{{_id}}/view-applicants" class="btn btn-success">See all applicants to this offer</a> --}}
