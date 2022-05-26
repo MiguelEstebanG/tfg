@@ -105,7 +105,7 @@ export const deleteNote = async (req, res) => {
 export const registerOne = async (req, res) => {
   let jobRegistering = await Note.findById(req.params.id);
   jobRegistering = jobRegistering._id;
-  const { userName, email, address, reasons, job} = req.body;
+  const { userName, email, address, reasons, job, idUser} = req.body;
   const errors = [];
   const emailRegistered = await UserRegistered.findOne({email: req.user.email, job: jobRegistering});
   let userNote = await Note.findById(req.params.id);
@@ -134,9 +134,10 @@ export const registerOne = async (req, res) => {
       job,
     });
   } else {
-    const newUserRegistered = new UserRegistered({ userName, email, address, reasons, job });  
+    const newUserRegistered = new UserRegistered({ userName, email, address, reasons, job, idUser });  
     newUserRegistered.email = req.user.email;
     newUserRegistered.job = jobRegistering;
+    newUserRegistered.idUser = req.user.id;
     await newUserRegistered.save();
 
     var hour = new Date();
@@ -186,13 +187,18 @@ export const renderViewApplicants = async (req, res) =>{
     });
   }else{
     let jobRegistered = await Note.findById(req.params.id);
-    jobRegistered = jobRegistered.title; 
-    const userR = await UserRegistered.find({job: jobRegistered})
-      .sort({ date: "desc" })
-      .lean();
-    res.render("notes/view-applicants", {userR});
+    jobRegistered = jobRegistered._id; 
+    // const userR = await UserRegistered.find({job: jobRegistered})
+    let userR = await UserRegistered.find({job: jobRegistered}).lean();
+      // .sort({ date: "desc" })
+      // .lean();
+    res.render('notes/view-applicants', {userR});
   }
 };
+
+export const interview = async (req, res) =>{
+  res.render('notes/interview');
+}
 
 //export const renderViewApplicantsForm = async (req, res) =>{
   //let jobRegistered = await Note.findById(req.params.id);

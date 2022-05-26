@@ -8,6 +8,7 @@ const UserRegisteredSchema = new Schema(
       address: { type: String, required: true, trim: true},
       reasons: { type: String, trim: true},
       job: { type: String, required: true},
+      idUser: {type: String, required: true},
     },
     {
       timestamps: true,

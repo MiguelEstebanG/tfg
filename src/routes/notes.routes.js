@@ -9,6 +9,7 @@ import {
   registerOne,
   renderRegisterOneForm,
   renderViewApplicants,
+  interview,
   //renderViewApplicantsForm,
 } 
 from "../controllers/notes.controller.js";
@@ -39,6 +40,11 @@ router.post("/notes/:id/register", isAuthenticated, registerOne);
 
 //See the list of applicants
 router.get("/notes/:id/view-applicants", isAuthenticated , renderViewApplicants);
+
+//interview
+router.get("/notes/:id/view-applicants/:id", isAuthenticated, interview);
+
+router.post("/notes/:id/view-applicants/:id", isAuthenticated, interview);
 
 //router.post("notes/:id/view-applicants", isAuthenticated, renderViewApplicantsForm);
 

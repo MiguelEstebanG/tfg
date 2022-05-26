@@ -1,5 +1,5 @@
 <div class="row">
-  {{#each userRegistered}}
+  {{#each userR}}
   <div class="col-md-3">
     <div class="card">
       <div class="card-body">
@@ -9,9 +9,21 @@
         <p>{{ email }} </p>
         <p>{{ address }}</p>
         <p>{{ reasons }}</p>
+        <p>{{ createdAt }}</p>
+        <a class="nav-link" href="/notes/{{_id}}/view-applicants/{{idUser}}" class="btn btn-info">
+              Set Interview
+        </a>
       </div>
     </div>
   </div>
+
+  {{!-- <li class="list-group-item">
+    <a>{{ userName }}</a>
+    <a>{{ email }}</a>
+    <a>{{ address }}</a>
+    <a>{{ reasons }}</a>
+  </li> --}}
+
   {{else}}
   <div class="card mx-auto">
     <div class="card-body">
