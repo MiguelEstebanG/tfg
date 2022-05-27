@@ -7,7 +7,7 @@
           <h1>Set interview conditions</h1>
 
           <form action="/notes/interview/{{userRId}}" method="post">
-            <div class="mb-3">
+            {{!-- <div class="mb-3">
               <input
                 class="form-control"
                 type="text"
@@ -15,7 +15,7 @@
                 placeholder="Write the job you want to interview this candidate for."
                 value="{{interview.job}}"
               />
-            </div>
+            </div> --}}
 
             <div class="mb-3">
               <input
@@ -26,16 +26,6 @@
                 value="{{interview.place}}"
               />
             </div>
-
-            <!--<div class="mb-3">
-              <input
-                class="form-control"
-                type="text"
-                name="email"
-                placeholder="Write your email"
-                value="{{userRegistered.email}}"
-              />
-            </div>-->
 
             <div class="mb-3">
               <input
@@ -66,7 +56,7 @@
               >{{interview.extraInfo}}</textarea>
             </div>
             <button class="btn btn-primary" type="submit">Submit</button>
-            {{!-- <a href="/notes/{{_id}}/view-applicants" class="btn btn-success">See all applicants to this offer</a> --}}
+            <a href="/notes/{{appId}}/view-applicants" class="btn btn-info">See all applicants to this offer</a>
           </form>
         </div>
       </div>

@@ -204,8 +204,7 @@ export const interview = async (req, res) =>{
   // let userInt = await UserRegistered.find({job: req.params.id});
   // userInt = userInt.idUser;
   const userApp = await UserRegistered.findById(req.params.id);
-  res.render("notes/interview", { userRId: req.params.id });
-
+  
   const {application, job, place, date, extraInfo} = req.body;
   let userId = userApp.idUser;
   let jobId = userApp.job;
@@ -214,11 +213,20 @@ export const interview = async (req, res) =>{
   newInterview.interviewer = req.user.id;
   newInterview.application = userId;
   newInterview.job = jobId;
-    // newInterview.place = req.body.place;
-    // newInterview.date = req.body.date;
-    // newInterview.extraInfo = req.body.extraInfo;
+
   await newInterview.save();
+
+  req.flash("success_msg", "Interview succesfully appointed");
+  res.redirect("/notes/" + jobId + "/view-applicants");
+
+  // res.render("notes/interview", { userRId: req.params.id });
 };
+
+export const renderInterview = async (req, res) => {
+  const userApp = await UserRegistered.findById(req.params.id);
+  let jobId = userApp.job;
+  res.render("notes/interview", { userRId: req.params.id, appId: userApp.job});
+}
 
 
 //export const renderViewApplicantsForm = async (req, res) =>{
