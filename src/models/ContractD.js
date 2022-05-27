@@ -110,12 +110,16 @@ const ContractDSchema = new Schema(
                     seleccionarCandidatos:{ //Seleccionar Candidatos
                         id:{ type: String, required: true, trim: true, default: '0041'},
                         definition:{ type: String, required: true, trim: true, default: 'Seleccionar candidatos'},
-                        events:{}
+                        events:{
+                            applicantsSelected:[String],
+                        }
                     },
                     terminos:{ //definir terminos de la entrevista
                         id:{ type: String, required: true, trim: true, default: '0042'},
                         definition:{ type: String, required: true, trim: true, default: 'Definir terminos de la entrevista'},
-                        events:{}
+                        events:{
+                            interviewTerms:[String],
+                        }
                     }, 
                 }
             },

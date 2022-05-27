@@ -211,10 +211,45 @@ export const interview = async (req, res) =>{
 
   const newInterview = new Interview({application, job, place, date, extraInfo});
   newInterview.interviewer = req.user.id;
-  newInterview.application = userId;
+  newInterview.interviewee = userId;
   newInterview.job = jobId;
 
   await newInterview.save();
+
+  var hour = new Date();
+  var fecha = new Date();
+
+  var hour = hour.getHours()+ ':' + hour.getMinutes()+ ':' + hour.getSeconds();
+
+  var day = new Date(fecha).getDate();
+  var monthIndex = new Date(fecha).getMonth() + 1;
+  var year = new Date(fecha).getFullYear();
+
+  var fecha = day + '/' + monthIndex + '/' + year;
+
+  const contractInterviewer = await ContractD.findOne({ belongsTo: req.user.id }); 
+
+  var selected = "Candidate with id: "  + userId + " has been selected by the company: " + req.user.id + " at " + hour + " of " + fecha +  " to have an interview for the job: " + jobId;
+
+  var interviewData = "Candidate with id: "  + userId + " has been appointed for an interview in " + newInterview.place + " at " + newInterview.date + " by " + newInterview.interviewer;
+
+  contractInterviewer._activities.entrevistar._actions.seleccionarCandidatos.events.applicantsSelected.push(selected);
+
+  contractInterviewer._activities.entrevistar._actions.terminos.events.interviewTerms.push(interviewData);
+
+  await contractInterviewer.save();
+
+  const contractCandidate = await ContractD.findOne({ belongsTo:  userId }); 
+
+  var selected = "Candidate with id: "  + userId + " has been selected by the company: " + req.user.id + " at " + hour + " of " + fecha + " to have an interview for the job: " + jobId;
+
+  var interviewData = "Candidate with id: "  + userId + " has been appointed for an interview in " + newInterview.place + " at " + newInterview.date + " by " + newInterview.interviewer;
+
+  contractCandidate._activities.entrevistar._actions.seleccionarCandidatos.events.applicantsSelected.push(selected);
+
+  contractCandidate._activities.entrevistar._actions.terminos.events.interviewTerms.push(interviewData);
+
+  await contractCandidate.save();
 
   req.flash("success_msg", "Interview succesfully appointed");
   res.redirect("/notes/" + jobId + "/view-applicants");
