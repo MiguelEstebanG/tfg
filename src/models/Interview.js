@@ -9,7 +9,6 @@ const InterviewSchema = new Schema(
         place: { type: String, trim: true },
         date: { type: String, trim: true },
         extraInfo: {type: String},
-
     },
     {
         timestamps: true,

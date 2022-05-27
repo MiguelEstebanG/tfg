@@ -42,9 +42,9 @@ router.post("/notes/:id/register", isAuthenticated, registerOne);
 router.get("/notes/:id/view-applicants", isAuthenticated , renderViewApplicants);
 
 //interview
-router.get("/notes/:id/view-applicants/interview", isAuthenticated, interview);
+router.get("/notes/interview/:id", isAuthenticated, interview);
 
-router.post("/notes/:id/view-applicants/interview", isAuthenticated, interview);
+router.post("/notes/interview/:id", isAuthenticated, interview);
 
 //router.post("notes/:id/view-applicants", isAuthenticated, renderViewApplicantsForm);
 
