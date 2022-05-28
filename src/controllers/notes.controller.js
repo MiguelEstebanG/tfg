@@ -3,6 +3,7 @@ import UserRegistered from "../models/UserRegistered.js";
 import User from "../models/User.js";
 import ContractD from "../models/ContractD.js";
 import Interview from "../models/Interview.js";
+import Contract from "../models/Contract.js";
 
 export const renderNoteForm = (req, res) => {
   res.render("notes/new-note");
@@ -260,9 +261,33 @@ export const interview = async (req, res) =>{
 export const renderInterview = async (req, res) => {
   const userApp = await UserRegistered.findById(req.params.id);
   let jobId = userApp.job;
-  res.render("notes/interview", { userRId: req.params.id, appId: userApp.job});
-}
+  res.render("notes/interview", { userRId: req.params.id, appId: userApp.job });
+};
 
+
+export const hire = async (req, res) => {
+  const userApp = await UserRegistered.findById(req.params.id);
+
+  const { salary, startDate, duration, typeOfContract, timetable, extraInfo } = req.body;
+  let userId = userApp.idUser;
+  let jobId = userApp.job;
+
+  const newContractSigned = new Contract({salary, startDate, duration, typeOfContract, timetable, extraInfo});
+  newContractSigned.job = jobId;
+  newContractSigned.employee = userId;
+  newContractSigned.employer = req.user.id;
+
+  await newContractSigned.save();
+
+  req.flash("success_msg", "Contract succesfully appointed");
+  res.redirect("/notes/" + jobId + "/view-applicants");
+};
+
+export const renderHire = async (req, res) =>{
+  const userApp = await UserRegistered.findById(req.params.id);
+  let jobId = userApp.job;
+  res.render("notes/contract", { userRId: req.params.id, appId: userApp.job })
+};
 
 //export const renderViewApplicantsForm = async (req, res) =>{
   //let jobRegistered = await Note.findById(req.params.id);

@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="row">
+    <!--FORM-->
+    <div class="col-md-5 offset-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h1>Set interview conditions</h1>
+
+          <form action="/notes/hire/{{userRId}}" method="post">
+            {{!-- <div class="mb-3">
+              <input
+                class="form-control"
+                type="text"
+                name="job"
+                placeholder="Write the job you want to interview this candidate for."
+                value="{{interview.job}}"
+              />
+            </div> --}}
+
+            <div class="mb-3">
+              <input
+                class="form-control"
+                type="text"
+                name="salary"
+                placeholder="Point out the gross salary that the employee will recieve"
+                value="{{contract.salary}}"
+              />
+            </div>
+            
+            <div class="mb-3">
+              <input
+                class="form-control"
+                type="text"
+                name="startDate"
+                placeholder="Specify the day when the contract has been signed"
+                value="{{contract.startDate}}"
+              />
+            </div>
+
+            <div class="mb-3">
+              <input
+                class="form-control"
+                type="text"
+                name="duration"
+                placeholder="Specify the duration of the contract"
+                value="{{contract.duration}}"
+              />
+            </div>
+
+            <div class="mb-3">
+              <input
+                class="form-control"
+                type="text"
+                name="typeOfContract"
+                placeholder="Specify the type of the contract signed"
+                value="{{contract.typeOfContract}}"
+              />
+            </div>
+
+            <div class="mb-3">
+              <input
+                class="form-control"
+                type="text"
+                name="timetable"
+                placeholder="Indicate the work schedule the employee will have in the company"
+                value="{{contract.timetable}}"
+              />
+            </div>
+
+            <div class="mb-3">
+              <textarea
+                class="form-control"
+                name="extraInfo"
+                rows="3"
+                placeholder="Write more info regarding to the contract signed"
+              >{{contract.extraInfo}}</textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+            <a href="/notes/{{appId}}/view-applicants" class="btn btn-info">See all applicants to this offer</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
