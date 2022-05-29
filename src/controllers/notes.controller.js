@@ -279,6 +279,68 @@ export const hire = async (req, res) => {
 
   await newContractSigned.save();
 
+  var hour = new Date();
+  var fecha = new Date();
+
+  var hour = hour.getHours()+ ':' + hour.getMinutes()+ ':' + hour.getSeconds();
+
+  var day = new Date(fecha).getDate();
+  var monthIndex = new Date(fecha).getMonth() + 1;
+  var year = new Date(fecha).getFullYear();
+
+  var fecha = day + '/' + monthIndex + '/' + year;
+
+  const contractEmployer = await ContractD.findOne({ belongsTo: req.user.id });
+
+  var contractOffered = "Company with id: "  + req.user.id + " has offered at " + hour + " of " + fecha + " a new contract to the candidate: " + userId + " for the job: " + jobId;
+
+  var contractResolution = "Candidate with id: "  + userId + " has signed a new " + newContractSigned.typeOfContract + " contract since " + newContractSigned.startDate + " for the job: " + jobId + " performing the activity " + newContractSigned.activity + " for " + newContractSigned.duration; 
+
+  var detailsC = {job: newContractSigned.job, 
+    employee: newContractSigned.employee, 
+    employer: newContractSigned.employer, 
+    salary: newContractSigned.salary, 
+    startDate: newContractSigned.startDate, 
+    duration: newContractSigned.duration,
+    typeOfContract: newContractSigned.typeOfContract,
+    activity: newContractSigned.activity,
+    timetable: newContractSigned.timetable,
+    extraInfo: newContractSigned.extraInfo};
+
+  contractEmployer._activities.contratacion._actions.ofertarContrato.events.contractsOffered.push(contractOffered);
+
+  contractEmployer._activities.contratacion._actions.detallesContrato.events.details.push(detailsC);
+
+  contractEmployer._activities.contratacion._actions.resolucionFinal.events.resolution.push(contractResolution);
+
+  await contractEmployer.save();
+
+
+  const contractEmployee = await ContractD.findOne({ belongsTo: userId });
+
+  var contractOffered = "Company with id: "  + req.user.id + " has offered at " + hour + " of " + fecha + " a new contract to the candidate: " + userId + " for the job: " + jobId;
+
+  var contractResolution = "Candidate with id: "  + userId + " has signed a new " + newContractSigned.typeOfContract + " contract since " + newContractSigned.startDate + " for the job: " + jobId + " performing the activity " + newContractSigned.activity + " for " + newContractSigned.duration; 
+
+  var detailsC = {job: newContractSigned.job, 
+    employee: newContractSigned.employee, 
+    employer: newContractSigned.employer, 
+    salary: newContractSigned.salary, 
+    startDate: newContractSigned.startDate, 
+    duration: newContractSigned.duration,
+    typeOfContract: newContractSigned.typeOfContract,
+    activity: newContractSigned.activity,
+    timetable: newContractSigned.timetable,
+    extraInfo: newContractSigned.extraInfo};
+
+  contractEmployee._activities.contratacion._actions.ofertarContrato.events.contractsOffered.push(contractOffered);
+
+  contractEmployee._activities.contratacion._actions.detallesContrato.events.details.push(detailsC);
+
+  contractEmployee._activities.contratacion._actions.resolucionFinal.events.resolution.push(contractResolution);
+
+  await contractEmployee.save();  
+
   req.flash("success_msg", "Contract succesfully appointed");
   res.redirect("/notes/" + jobId + "/view-applicants");
 };

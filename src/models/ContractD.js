@@ -131,17 +131,34 @@ const ContractDSchema = new Schema(
                     ofertarContrato:{ //ofertar contrato
                         id:{ type: String, required: true, trim: true, default: '0051'},
                         definition:{ type: String, required: true, trim: true, default: 'Ofertar contrato'},
-                        events:{}
+                        events:{
+                            contractsOffered:[String],
+                        }
                     },
-                    contraofertarContrato:{ //contraofertar 
+                    detallesContrato:{ //contraofertar 
                         id:{ type: String, required: true, trim: true, default: '0052'},
                         definition:{ type: String, required: true, trim: true, default: 'Contraofertar contrato'},
-                        events:{}
+                        events:{
+                            details:[{
+                                job: String,
+                                employee: String,
+                                employer: String,
+                                salary: String,
+                                startDate: String,
+                                duration: String,
+                                typeOfContract: String,
+                                activity: String,
+                                timetable: String,
+                                extraInfo: String,
+                            }],
+                        }
                     },
-                    resolucion:{ //resolucion
+                    resolucionFinal:{ //resolucion
                         id:{ type: String, required: true, trim: true, default: '0053'},
                         definition:{ type: String, required: true, trim: true, default: 'Resolucion'},
-                        events:{}
+                        events:{
+                            resolution:[String],
+                        }
                     }, 
                 }
 
