@@ -268,11 +268,11 @@ export const renderInterview = async (req, res) => {
 export const hire = async (req, res) => {
   const userApp = await UserRegistered.findById(req.params.id);
 
-  const { salary, startDate, duration, typeOfContract, timetable, extraInfo } = req.body;
+  const { activity, salary, startDate, duration, typeOfContract, timetable, extraInfo } = req.body;
   let userId = userApp.idUser;
   let jobId = userApp.job;
 
-  const newContractSigned = new Contract({salary, startDate, duration, typeOfContract, timetable, extraInfo});
+  const newContractSigned = new Contract({activity, salary, startDate, duration, typeOfContract, timetable, extraInfo});
   newContractSigned.job = jobId;
   newContractSigned.employee = userId;
   newContractSigned.employer = req.user.id;
