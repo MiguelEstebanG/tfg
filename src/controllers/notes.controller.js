@@ -351,6 +351,28 @@ export const renderHire = async (req, res) =>{
   res.render("notes/contract", { userRId: req.params.id, appId: userApp.job })
 };
 
+export const renderDocumentContract = async (req, res) => {
+  // const errors = [];
+  // let userNote = await Note.findById(req.params.id);
+  // userNote = userNote.user;
+  // if(userNote != req.user.id){
+  //   errors.push({ text: "You cannot see the applicants for this offer"});
+  // }
+  // if(errors.length > 0){
+  //   res.render("notes/come-back", {
+  //     errors,
+  //   });
+  // }else{
+
+    const documentContract = await ContractD.findOne({ belongsTo: req.user.id }).lean();
+
+    var dc = JSON.stringify(documentContract, null, 2);
+      
+    res.render('notes/document-contract', {dc});
+  // }
+};
+
+
 //export const renderViewApplicantsForm = async (req, res) =>{
   //let jobRegistered = await Note.findById(req.params.id);
   //jobRegistered = jobRegistered.title; 

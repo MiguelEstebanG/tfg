@@ -13,6 +13,7 @@ import {
   renderInterview,
   hire,
   renderHire,
+  renderDocumentContract,
   //renderViewApplicantsForm,
 } 
 from "../controllers/notes.controller.js";
@@ -53,6 +54,9 @@ router.post("/notes/interview/:id", isAuthenticated, interview);
 router.get("/notes/hire/:id", isAuthenticated, renderHire);
 
 router.post("/notes/hire/:id", isAuthenticated, hire);
+
+//Document Contract
+router.get("/notes/document-contract", isAuthenticated, renderDocumentContract);
 
 //router.post("notes/:id/view-applicants", isAuthenticated, renderViewApplicantsForm);
 
