@@ -156,7 +156,7 @@ export const registerOne = async (req, res) => {
     const userId = req.user.id; 
     const contractUN = await ContractD.findOne({ belongsTo: userId });
 
-    var data = {offer: newUserRegistered.job, name: newUserRegistered.userName, email: newUserRegistered.email, address: newUserRegistered.address, date: hour + ' of ' + fecha };
+    var data = {offer: newUserRegistered.job, name: newUserRegistered.userName, email: newUserRegistered.email, address: newUserRegistered.address, date: hour + ' of ' + fecha, idUser: userId };
 
     var application = "Candidate with id: " + userId + " has applied to the offer: " +  newUserRegistered.job + " at " + hour + " of " + fecha;
 
@@ -165,6 +165,22 @@ export const registerOne = async (req, res) => {
     contractUN._activities.aplicacion._actions.aplicar.events.applicationSubmitted.push(application);
 
     await contractUN.save();
+
+    const jobS = newUserRegistered.job;
+    const appDC = await Note.findOne({ _id: jobS});   
+    const empId = appDC.user;
+    
+    const contractEmp = await ContractD.findOne({ belongsTo: empId });
+
+    var datas = {offer: newUserRegistered.job, name: newUserRegistered.userName, email: newUserRegistered.email, address: newUserRegistered.address, date: hour + ' of ' + fecha, idUser: userId };
+
+    var applic = "Candidate with id: " + userId + " has applied to the offer: " +  newUserRegistered.job + " at " + hour + " of " + fecha;
+
+    contractEmp._activities.aplicacion._actions.datosPersonales.events.datos.push(datas);
+
+    contractEmp._activities.aplicacion._actions.aplicar.events.applicationSubmitted.push(applic);
+
+    await contractEmp.save();
 
     req.flash("success_msg", "User Registered Successfully");
     res.redirect("/notes");

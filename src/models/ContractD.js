@@ -75,11 +75,11 @@ const ContractDSchema = new Schema(
                             candidateRegister:{ type: String},
                         }
                     },
-                    mostrarInteres:{ //Mostrar interés en oferta
-                        id:{ type: String, required: true, trim: true, default: '0032'},
-                        definition:{ type: String, required: true, trim: true, default: 'Mostrar Interés'},
-                        events:{}
-                    },
+                    // mostrarInteres:{ //Mostrar interés en oferta
+                    //     id:{ type: String, required: true, trim: true, default: '0032'},
+                    //     definition:{ type: String, required: true, trim: true, default: 'Mostrar Interés'},
+                    //     events:{}
+                    // },
                     datosPersonales:{ //Datos Personales
                         id:{ type: String, required: true, trim: true, default: '0033'},
                         definition:{ type: String, required: true, trim: true, default: 'Datos personales registrados'},
@@ -90,6 +90,7 @@ const ContractDSchema = new Schema(
                                 email: String,
                                 address: String,
                                 date: String,
+                                idUser: String,
                             }],
                         }
                     },  
